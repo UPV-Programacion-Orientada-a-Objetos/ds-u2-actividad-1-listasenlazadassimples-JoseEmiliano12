@@ -1,0 +1,106 @@
+#---------------------------------------------
+# Proyecto documentado con Doxygen
+# Universidad Politécnica de Victoria
+# Ingeniería en Tecnología de la Información e Innovación Digital
+# Sistema de Gestión Polimórfica de Sensores IoT (Genérico)
+# Autor: José Emiliano Puga Saucedo
+#---------------------------------------------
+
+# Nombre del proyecto
+PROJECT_NAME           = "Sistema de Gestión Polimórfica de Sensores IoT (Genérico)"
+
+# Breve descripción del proyecto
+PROJECT_BRIEF          = "Proyecto académico de POO Avanzada y Listas Genéricas en C++ para IoT"
+
+# Versión del proyecto
+PROJECT_NUMBER         = 1.0
+
+# Nombre del autor (aparece en cada página)
+PROJECT_AUTHOR         = "José Emiliano Puga Saucedo"
+
+# Carpeta de salida
+OUTPUT_DIRECTORY       = docs
+
+# Carpeta donde se encuentra el código fuente
+INPUT                  = src
+
+# Buscar de forma recursiva dentro de src/
+RECURSIVE              = YES
+
+# Archivos a analizar (opcional si usas solo .h y .cpp)
+FILE_PATTERNS          = *.h \
+                         *.cpp
+
+# Extraer toda la documentación posible
+EXTRACT_ALL            = YES
+
+# Mostrar archivos sin documentación
+SHOW_FILES             = YES
+
+# Mostrar clases y estructuras aunque no tengan doc
+SHOW_NAMESPACES        = YES
+
+# Generar documentación HTML
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html
+HTML_COLORSTYLE_HUE    = 220
+HTML_DYNAMIC_SECTIONS  = YES
+GENERATE_TREEVIEW      = YES
+DISABLE_INDEX          = NO
+FULL_SIDEBAR           = YES
+
+# Activar diagramas (requiere Graphviz)
+HAVE_DOT               = YES
+DOT_NUM_THREADS        = 4
+CLASS_DIAGRAMS         = YES
+UML_LOOK               = YES
+CALL_GRAPH             = YES
+CALLER_GRAPH           = YES
+DOT_TRANSPARENT        = YES
+INTERACTIVE_SVG        = YES
+DOT_IMAGE_FORMAT       = svg
+
+# Mostrar el árbol de herencia entre clases
+SHOW_INCLUDE_GRAPH     = YES
+INCLUDE_GRAPH          = YES
+INCLUDED_BY_GRAPH      = YES
+
+# Generar índice de clases
+ALPHABETICAL_INDEX     = YES
+GENERATE_INDEX         = YES
+
+# Generar documentación en formato LaTeX (PDF)
+GENERATE_LATEX         = NO
+
+# Documentar constructores, destructores y miembros privados
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+EXTRACT_LOCAL_CLASSES  = YES
+
+# Mantener comentarios de bloque
+JAVADOC_AUTOBRIEF      = YES
+MULTILINE_CPP_IS_BRIEF = YES
+
+# Mostrar fechas y tiempos
+TIMESTAMP              = YES
+
+# Agregar logotipo institucional (si lo tienes)
+# PROJECT_LOGO           = "logo_upv.png"
+
+# Idioma de la documentación
+OUTPUT_LANGUAGE        = Spanish
+
+# Colores y estilo del HTML
+HTML_COLORSTYLE_GAMMA  = 90
+HTML_TIMESTAMP         = YES
+
+# Mostrar las definiciones de los archivos fuente
+SOURCE_BROWSER         = YES
+INLINE_SOURCES         = YES
+
+# Directorio temporal
+TEMP_DIR               = /tmp
+
+#---------------------------------------------
+# FIN DEL ARCHIVO DOXYFILE
+#---------------------------------------------

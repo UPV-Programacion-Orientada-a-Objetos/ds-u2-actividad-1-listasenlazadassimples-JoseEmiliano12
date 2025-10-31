@@ -1,0 +1,114 @@
+
+% Documento de presentación del proyecto
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{listings}
+\usepackage{courier}
+\usepackage{parskip}
+
+\geometry{left=25mm,right=25mm,top=25mm,bottom=25mm}
+
+\begin{document}
+
+% Encabezado manual (más robusto frente a procesadores de texto)
+\begin{center}
+	{\LARGE Sistema IoT de Monitoreo Polimórfico \par}
+	\vspace{6pt}
+	{\large José Emiliano Puga Saucedo \par}
+	\vspace{4pt}
+	{\small 30 de octubre de 2025 \par}
+\end{center}
+
+\begin{abstract}
+Este documento resume el propósito, la arquitectura y el uso básico del
+proyecto "Sistema IoT de Monitoreo Polimórfico". Incluye una descripción de
+las clases principales, ejemplos de uso y las instrucciones mínimas para
+compilar y generar la documentación con Doxygen.
+\end{abstract}
+
+\section{Introducción}
+El proyecto consiste en un conjunto de clases en C++ para gestionar sensores
+de distintos tipos (temperatura y presión). Se aprovecha el polimorfismo para
+mantener una interfaz común (`SensorBase`) y especializar el comportamiento en
+subclases (`SensorTemperatura`, `SensorPresion`). Además se utiliza una lista
+enlazada genérica para almacenar el historial de lecturas.
+
+\section{Estructura general}
+Los ficheros relevantes son:
+\begin{itemize}
+	\item \texttt{main.cpp} -- Interfaz de usuario y bucle principal.
+	\item \texttt{SensorBase.h} -- Clase base abstracta con la interfaz común.
+	\item \texttt{SensorTemperatura.h}, \texttt{SensorPresion.h} -- Implementaciones concretas.
+	\item \texttt{ListaSensor.h} -- Implementación de una lista enlazada genérica.
+	\item \texttt{ListaGestion.h} -- Colección que administra los sensores (polimórfica).
+\end{itemize}
+
+\section{Clases principales}
+\subsection{SensorBase}
+Contrato mínimo que obliga a las subclases a implementar:
+\begin{itemize}
+	\item \texttt{agregarLecturaDesdeTexto(const char*)}
+	\item \texttt{procesarLectura()}
+	\item \texttt{imprimirInfo() const}
+\end{itemize}
+
+\subsection{SensorTemperatura}
+Guarda lecturas en una \texttt{ListaSensor<float>}. Antes de calcular el
+promedio elimina la lectura más baja como filtrado de valores anómalos.
+
+\subsection{SensorPresion}
+Guarda lecturas en una \texttt{ListaSensor<int>} y calcula un promedio simple.
+
+\section{Uso rápido}
+Ejemplo mínimo de interacción (modo manual desde la consola):
+\begin{enumerate}
+	\item Compilar el binario: \texttt{g++ main.cpp -o SistemaIoT}
+	\item Ejecutar: \texttt{./SistemaIoT}
+	\item Seguir el menú para agregar sensores e ingresar lecturas.
+\end{enumerate}
+
+\section{Compilación y recomendaciones}
+Se recomienda usar C++11 (o superior) y, para proyectos más grandes, CMake.
+En este repositorio existe un fichero \texttt{CMakeLists.txt} que puede usarse
+para generar los ficheros de proyecto:
+
+\begin{lstlisting}[basicstyle=\footnotesize\ttfamily,breaklines=true]
+mkdir -p build && cd build
+cmake ..
+make
+\end{lstlisting}
+
+Alternativamente, para una compilación rápida:
+\begin{lstlisting}[basicstyle=\footnotesize\ttfamily]
+g++ main.cpp -o SistemaIoT
+\end{lstlisting}
+
+\section{Generar documentación con Doxygen}
+Si desea generar la documentación HTML con Doxygen:
+\begin{enumerate}
+	\item Asegúrese de tener instalado \texttt{doxygen} (y opcionalmente \texttt{graphviz} si quiere diagramas).
+	\item En la raíz del proyecto ejecute: \texttt{doxygen Doxyfile} (o use \texttt{Doxyfile.clean} si prefiere la versión limpia).
+	\item La salida por defecto aparecerá en la carpeta \texttt{docs/html} o la que esté indicada en el \texttt{Doxyfile}.
+\end{enumerate}
+
+\section{Buenas prácticas y notas}
+\begin{itemize}
+	\item Documente nuevas clases y métodos usando el formato Doxygen en los headers.
+	\item Mantenga el fichero \texttt{Doxyfile} actualizado con las rutas correctas en \texttt{INPUT} y \texttt{STRIP\\_FROM\\_PATH}.
+	\item Para diagramas de clases instale Graphviz y active \texttt{HAVE\\_DOT = YES} en el \texttt{Doxyfile}.
+\end{itemize}
+
+\section{Licencia y autoría}
+Este proyecto es de carácter académico. Autor: José Emiliano Puga Saucedo.
+Si quiere incluir una licencia explícita, añada un fichero \texttt{LICENSE} con la licencia deseada.
+
+\vspace{8mm}
+Documento preparado para acompañar el repositorio; si desea, puedo generar
+un PDF a partir de este fichero y adjuntarlo, o integrar la generación en el
+flujo de build.
+
+\end{document}
